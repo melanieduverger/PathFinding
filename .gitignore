@@ -87,3 +87,14 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+
+
+#Java 
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
