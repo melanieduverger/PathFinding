@@ -2,32 +2,8 @@ import time
 import numpy
 from heapq import *
 from math import sqrt
+from functions import load_matrix
 
-#taille de la matrice
-f = open('matrix.txt')
-current_line  = f.readline()
-counter = 0
-while current_line:
-        counter+=1
-        current_line  = f.readline()
-f.close()
-
-print "Nombre de cases : %d "%counter;
-print "Matrice de %d par %d" %(int(sqrt(counter)), int(sqrt(counter)))
-print "---------------------"
-
-#initialisation de la matrice
-grid = [[0] * int(sqrt(counter)) for i in range(int(sqrt(counter)))]
-
-f = open('matrix.txt')
-current_line  = f.readline()
-
-while current_line:
-    #traitement de la ligne courante
-    grid[int(current_line[:1])][int(current_line[1:2])] = int(current_line[2:3]);
-        #     x                             y                                       0 ou 1
-    current_line = f.readline()
-f.close()
 
 def heuristic(a, b):
     return (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2
@@ -53,7 +29,7 @@ def astar(array, start, goal):
             while current_location in precedent_location:
                 data.append(current_location)
                 current_location = precedent_location[current_location]
-            return data
+            return data[::-1]
 
         close_set.add(current_location)
         for i, j in voisins:
@@ -81,6 +57,7 @@ def astar(array, start, goal):
                 
     return False
 
+grid = load_matrix("matrix.txt", 2)
 
 nmap = numpy.array(grid)
 
