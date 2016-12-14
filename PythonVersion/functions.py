@@ -24,12 +24,13 @@ def load_matrix(filename, dimensions):
                 #initialisation de la matrice
                 grid = [[0] * int(sqrt(counter)) for i in range(int(sqrt(counter)))]
 
-                f = open('matrix.txt')
+                f = open(filename)
                 current_line  = f.readline()
 
                 while current_line:
                     #traitement de la ligne courante
-                    grid[int(current_line[:1])][int(current_line[2:3])] = int(current_line[4:5]);
+                    split = current_line.split(" ");
+                    grid[int(split[0])][int(split[1])] = int(split[2]);
                         #     x                             y                                       0 ou 1
                     current_line = f.readline()
                 f.close()
@@ -43,6 +44,4 @@ def load_matrix(filename, dimensions):
         return grid;
        
 #or line in grid:
-#        for case in line:
-
-                
+#        for case in line:              
